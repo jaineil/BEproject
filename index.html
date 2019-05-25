@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  circle {
+    fill: #ccc;
+    stroke: #333;
+    stroke-width: 1.5px;
+  }
+</style>
+
+<body>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script>
+    var width = 960,
+      height = 500;
+
+    var state = {
+      links: {
+        count: 0
+      },
+      nodes: {
+        count: 0
+      }
+    };
+
+    var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var drawing = false;
+    var coords1, coords2, circ1, circ2;
+
+    d3.selection.prototype.first = function () {
+      return d3.select(this[0][0]);
+    };
+    d3.selection.prototype.last = function () {
+      var last = this.size() - 1;
+      return d3.select(this[0][last]);
+    };
+
+    svg.on("click", function () {
+      var coords = d3.mouse(this);
+      //console.log(`${coords[0]}, ${coords[1]}`);
+      if (d3.event.srcElement.tagName === "circle") {
+
+      }
+      else {
+        state.nodes.count++;
+        state.nodes[state.nodes.count] = { 
+          x: coords[0], 
+          y: coords[1] 
+        };
+        svg
+          .append("circle")
+          .attr("r", 6)
+          .attr("cx", coords[0])
+          .attr("cy", coords[1])
+          .attr("class", `${state.nodes.count}`)
+          .on("click", function() {
+            if (!drawing) {
+              //coords1 = d3.mouse(this);
+              //circ1 = d3.event.srcElement.tagName;
+              drawing = !drawing;
+              circ1 = this.className.baseVal;
+            }
+            else {
+              //coords2 = d3.mouse(this);
+              circ2 = this.className.baseVal;
+              console.log(circ1);
+              console.log(circ2);
+              drawing = !drawing;
+              svg.append("line")
+                .attr("x1", state.nodes[circ1].x)
+                .attr("y1", state.nodes[circ1].y)
+                .attr("x2", state.nodes[circ2].x)
+                .attr("y2", state.nodes[circ2].y)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+              
+              state.links.count++;
+              state.links[state.links.count] = {
+                first: circ1,
+                second: circ2
+              };
+              console.log(state.links);
+            }
+          });
+      }
+    });
+  </script>
