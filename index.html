@@ -49,14 +49,20 @@
       .attr("height", 50)
       .attr("class", "layerbtn")
       .style("stroke", "black")
-      .style("fill", "red");
+      .style("fill", "red")
+      .on("click", function() {
+        context = "makelayer";
+      });
 
     svg
       .append("circle")
       .attr("r", 10)
       .attr("cx", 90)
       .attr("cy", 20)
-      .attr("class", 'nodebtn');
+      .attr("class", 'nodebtn')
+      .on("click", function() {
+        context = "makenode";
+      });
 
     var drawing = false;
     var context, make;
@@ -71,12 +77,42 @@
 
     svg.on("click", function () {
       var coords = d3.mouse(this);
-      console.log(d3.event.srcElement.className);
+      console.log(state);
       if (d3.event.srcElement.tagName === "circle") {
-
+        
       }
       else if(context==="makenode" && d3.event.srcElement.tagName === "rect") {
-        state.layers[d3.event.srcElement.className.baseVal]["nodes"] = 0;
+        let parentrectx = state.layers[d3.event.srcElement.className.baseVal].x;
+        svg
+          .append("circle")
+          .attr("r", 6)
+          .attr("cx", parentrectx)
+          .attr("cy", coords[1])
+          .attr("class", `${state.nodes.count}`)
+          .on("click", function () {
+            if (!drawing) {
+              drawing = !drawing;
+              circ1 = this.className.baseVal;
+            }
+            else {
+              circ2 = this.className.baseVal;
+              drawing = !drawing;
+              svg.append("line")
+                .attr("x1", state.nodes[circ1].x)
+                .attr("y1", state.nodes[circ1].y)
+                .attr("x2", state.nodes[circ2].x)
+                .attr("y2", state.nodes[circ2].y)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+
+              state.links.count++;
+              state.links[state.links.count] = {
+                first: circ1,
+                second: circ2
+              };
+              console.log(state.links);
+            }
+          });
       }
       else if (context === "makelayer" && d3.event.srcElement.tagName === 'svg') {
         state.layers.count++;
@@ -94,12 +130,8 @@
           .attr("class", `layer${state.layers.count}`)
           .style("stroke", "black")
           .style("fill", "white");
-      }
-      else if (d3.event.srcElement.className.baseVal === "layerbtn") {
-        context = "makelayer";
-      }
-      else if (d3.event.srcElement.className.baseVal === "nodebtn") {
-        context = "makenode";
+          state.layers[d3.event.srcElement.className.baseVal] = {};
+          state.layers[d3.event.srcElement.className.baseVal]["nodes"] = 0;
       }
       else {
         state.nodes.count++;
