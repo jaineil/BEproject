@@ -6,11 +6,20 @@
     stroke: #333;
     stroke-width: 1.5px;
   }
+  button {
+    display: block
+  }
 </style>
 
 <body>
   <button onclick="layer()">Layer</button>
   <button onclick="node()">Node</button>
+  <select id="optimizer" onchange="selectOptimizer()">
+    <option value="Select Optimizer">Select Optimizer</option>
+    <option value="sgd">SGD</option>
+    <option value="rmsprop">RMSProp</option>
+    <option value="adam">Adam</option>
+  </select>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -45,6 +54,11 @@
     }
     */
 
+    function selectOptimizer() {
+      let e = document.getElementById('optimizer');
+      state["optimizer"] = e.options[e.selectedIndex].value;
+    }
+
     function layer() {
       context = "makelayer";
     }
@@ -67,7 +81,6 @@
 
     svg.on("click", function () {
       var coords = d3.mouse(this);
-      console.log(state);
       if (d3.event.srcElement.tagName === "circle") {
 
       }
@@ -108,7 +121,6 @@
                   if (!drawing) {
                     drawing = !drawing;
                     circ1 = this.className.baseVal;
-                    console.log(circ1);
                   }
                   else {
                     circ2 = this.className.baseVal;
@@ -132,6 +144,30 @@
           });
         state.layers[d3.event.srcElement.className.baseVal] = {};
         state.layers[d3.event.srcElement.className.baseVal]["nodes"] = 0;
+        let activation = d3.select(".activation")
+          .insert("div")
+          .text(`Layer ${state.layers.count}`)
+          .append("select")
+          .attr("id", `act${state.layers.count}`)
+          .attr("class",`${state.layers.count}`)
+          .on("change", function() {
+            state.layers[this.className]['act'] = this.value;
+          });
+        activation.append("option")
+          .attr("value","none")
+          .text("Choose Activation");
+        activation
+          .append("option")
+          .attr("value","relu")
+          .text("ReLU");
+        activation
+          .append("option")
+          .attr("value", "softmax")
+          .text("Softmax");
+        activation
+          .append("option")
+          .attr("value", "tanh")
+          .text("Tanh");
       }
       else {
 
@@ -151,4 +187,7 @@
       });
     });
   </script>
-  <button id="process">Process</button>
+  <button id="process" style="display: block">Process</button>
+  <div class="activation" style="display: block; float: right">
+    Activation
+  </div>

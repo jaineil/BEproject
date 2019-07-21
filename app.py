@@ -13,17 +13,18 @@ def process():
     f = open("demofile.py","w")
     json_string = request.form['state']
     datastore = json.loads(json_string)
+    optimizer = str(datastore["optimizer"])
     content ='''
 import tensorflow as tf
 model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28,28)),'''
     for i in range(datastore["layers"]["count"]):
         content = content + '''
-        tf.keras.layers.Dense(128, activation=tf.nn.relu)'''
+        tf.keras.layers.Dense(128, activation=tf.nn.{}),'''.format(datastore["layers"][str(i+1)]["act"])
     content = content + '''])
-model.compile(optimizer='adam',
+model.compile(optimizer='{}',
     loss='sparse_categorical_crossentropy',
-    metrics=['accuracy'])'''
+    metrics=['accuracy'])'''.format(optimizer)
     f.write(content)
     f.close()
 
