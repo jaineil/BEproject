@@ -6,6 +6,7 @@
     stroke: #333;
     stroke-width: 1.5px;
   }
+
   button {
     display: block
   }
@@ -144,21 +145,35 @@
           });
         state.layers[d3.event.srcElement.className.baseVal] = {};
         state.layers[d3.event.srcElement.className.baseVal]["nodes"] = 0;
-        let activation = d3.select(".activation")
+        let division = d3.select(".activation")
           .insert("div")
-          .text(`Layer ${state.layers.count}`)
+          .text(`Layer ${state.layers.count}`);
+        let type = division
+          .append("select")
+          .attr("id",`type${state.layers.count}`)
+          .attr("class", `${state.layers.count}`)
+          .on("change", function() {
+            state.layers[this.className]['type'] = this.value;
+          });
+        type.append("option")
+          .attr("value","none")
+          .text("Choose type");
+        type.append("option")
+          .attr("value","Dense")
+          .text("Dense");
+        let activation = division
           .append("select")
           .attr("id", `act${state.layers.count}`)
-          .attr("class",`${state.layers.count}`)
-          .on("change", function() {
+          .attr("class", `${state.layers.count}`)
+          .on("change", function () {
             state.layers[this.className]['act'] = this.value;
           });
         activation.append("option")
-          .attr("value","none")
+          .attr("value", "none")
           .text("Choose Activation");
         activation
           .append("option")
-          .attr("value","relu")
+          .attr("value", "relu")
           .text("ReLU");
         activation
           .append("option")
@@ -168,6 +183,8 @@
           .append("option")
           .attr("value", "tanh")
           .text("Tanh");
+        
+        division.append("select");
       }
       else {
 
@@ -175,13 +192,13 @@
     });
 
     $(document).ready(function () {
-      $('#process').on("click", function(event) {
+      $('#process').on("click", function (event) {
         $.ajax({
-          data:{
-            state:JSON.stringify(state)
+          data: {
+            state: JSON.stringify(state)
           },
-          type:'POST',
-          url:'/process'
+          type: 'POST',
+          url: '/process'
         });
         event.preventDefault();
       });
