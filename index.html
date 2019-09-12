@@ -184,7 +184,16 @@
           .attr("value", "tanh")
           .text("Tanh");
         
-        division.append("select");
+        let inputsize = division.append("textarea")
+          .attr("class", `${state.layers.count}`)
+          .on("change", function() {
+            state.layers[this.className]["inputsize"] = this.value;
+          });
+        let outputsize = division.append("textarea")
+          .attr("class", `${state.layers.count}`)
+          .on("change", function() {
+            state.layers[this.className]["outputsize"] = this.value;
+          });
       }
       else {
 

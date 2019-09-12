@@ -13,6 +13,7 @@ def process():
     f = open("demofile.py","w")
     json_string = request.form['state']
     datastore = json.loads(json_string)
+    print(datastore)
     optimizer = str(datastore["optimizer"])
     content ='''
 import tensorflow as tf
