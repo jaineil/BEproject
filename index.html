@@ -150,17 +150,20 @@
           .text(`Layer ${state.layers.count}`);
         let type = division
           .append("select")
-          .attr("id",`type${state.layers.count}`)
+          .attr("id", `type${state.layers.count}`)
           .attr("class", `${state.layers.count}`)
-          .on("change", function() {
+          .on("change", function () {
             state.layers[this.className]['type'] = this.value;
           });
         type.append("option")
-          .attr("value","none")
+          .attr("value", "none")
           .text("Choose type");
         type.append("option")
-          .attr("value","Dense")
+          .attr("value", "Dense")
           .text("Dense");
+        type.append("option")
+          .attr("value","Conv2D")
+          .text("Conv2D");
         let activation = division
           .append("select")
           .attr("id", `act${state.layers.count}`)
@@ -183,15 +186,16 @@
           .append("option")
           .attr("value", "tanh")
           .text("Tanh");
-        
+
+        state.layers[state.layers.count]["inputsize"] = "";
         let inputsize = division.append("textarea")
           .attr("class", `${state.layers.count}`)
-          .on("change", function() {
+          .on("change", function () {
             state.layers[this.className]["inputsize"] = this.value;
           });
         let outputsize = division.append("textarea")
           .attr("class", `${state.layers.count}`)
-          .on("change", function() {
+          .on("change", function () {
             state.layers[this.className]["outputsize"] = this.value;
           });
       }
