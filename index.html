@@ -162,7 +162,7 @@
           .attr("value", "Dense")
           .text("Dense");
         type.append("option")
-          .attr("value","Conv2D")
+          .attr("value", "Conv2D")
           .text("Conv2D");
         let activation = division
           .append("select")
@@ -197,6 +197,24 @@
           .attr("class", `${state.layers.count}`)
           .on("change", function () {
             state.layers[this.className]["outputsize"] = this.value;
+            let x = state.layers[this.className].x;
+            let y = state.layers[this.className].y;
+            svg.append("rect")
+              .attr("x", coords[0])
+              .attr("y", coords[1])
+              .attr("width", 50)
+              .attr("height", 200)
+              .attr("class", `layer${state.layers.count}`)
+              .style("stroke", "black")
+              .style("fill", "white");
+            let slitheight = 200 / Number(this.value);
+            for (let i = 0; i < Number(this.value); i++) {
+              svg
+                .append("circle")
+                .attr("r", 6)
+                .attr("cx", x + 25)
+                .attr("cy", y + slitheight / 2 + i * slitheight);
+            }
           });
       }
       else {
