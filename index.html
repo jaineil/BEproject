@@ -21,6 +21,10 @@
     <option value="rmsprop">RMSProp</option>
     <option value="adam">Adam</option>
   </select>
+  <form action="/fileupload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <input type="submit" value="Upload">
+  </form>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -226,7 +230,7 @@
       $('#process').on("click", function (event) {
         $.ajax({
           data: {
-            state: JSON.stringify(state)
+            state: JSON.stringify(state),
           },
           type: 'POST',
           url: '/process'

@@ -12,6 +12,12 @@ app = Flask(__name__)
 def index():
     return Response(open('index.html').read(), mimetype='text/html')
 
+@app.route('/fileupload', methods=['POST'])
+def fileupload():
+    if 'file' in request.files:  
+        f = request.files['file']  
+        f.save(f.filename)
+    return ('',204)
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -47,6 +53,7 @@ model.compile(optimizer='{}',
     nbformat.write(nb, 'demofile.ipynb')
     os.system('kernel-run demofile.ipynb')
     f.close()
+    return ('',204)
 
 
 if __name__ == "__main__":
