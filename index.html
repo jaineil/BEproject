@@ -21,6 +21,12 @@
     <option value="rmsprop">RMSProp</option>
     <option value="adam">Adam</option>
   </select>
+  <select id="dataset" onchange="selectDataset()">
+    <option value="Select Dataset">Select Dataset</option>
+    <option value="mnist">MNIST</option>
+    <option value="boston_housing">Boston Housing</option>
+    <option value="fashion_mnist">Fashion MNIST</option>
+  </select>
   <form action="/fileupload" method="post" enctype="multipart/form-data">
     <input type="file" name="file" />
     <input type="submit" value="Upload">
@@ -58,7 +64,10 @@
       }
     }
     */
-
+    function selectDataset() {
+      let e = document.getElementById('dataset');
+      state["dataset"] = e.options[e.selectedIndex].value;
+    }
     function selectOptimizer() {
       let e = document.getElementById('optimizer');
       state["optimizer"] = e.options[e.selectedIndex].value;
@@ -168,6 +177,12 @@
         type.append("option")
           .attr("value", "Conv2D")
           .text("Conv2D");
+        type.append("option")
+          .attr("value", "Dropout")
+          .text("Dropout");
+        type.append("option")
+          .attr("value", "Flatten")
+          .text("Flatten");
         let activation = division
           .append("select")
           .attr("id", `act${state.layers.count}`)
