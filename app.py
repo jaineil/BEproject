@@ -4,6 +4,7 @@ import sys
 import nbformat
 from nbformat.v4 import new_notebook, new_code_cell
 import os
+import time 
 
 app = Flask(__name__)
 
@@ -52,7 +53,9 @@ model.evaluate(x_test,  y_test, verbose=2)'''.format(optimizer)
     f.write(content)
     nb.cells.append(new_code_cell(content))
     nbformat.write(nb, 'demofile.ipynb')
-    os.system('kernel-run demofile.ipynb')
+    os.system('kaggle kernels push')
+    time.sleep(60)
+    os.system('kaggle kernels output demofile')
     f.close()
     return ('',204)
 
