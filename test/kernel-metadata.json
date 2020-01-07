@@ -1,13 +1,13 @@
 {
-  "id": "akashdeepsingh8888/demofile",
-  "title": "demofile",
-  "code_file": "demofile.py",
+  "id": "akashdeepsingh8888/testfile",
+  "title": "testfile",
+  "code_file": "test.py",
   "language": "python",
   "kernel_type": "script",
   "is_private": "true",
   "enable_gpu": "false",
   "enable_internet": "true",
-  "dataset_sources": [],
+  "dataset_sources": ["akashdeepsingh8888/modelfile"],
   "competition_sources": [],
   "kernel_sources": []
 }

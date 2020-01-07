@@ -55,17 +55,26 @@ model.evaluate(x_test,  y_test, verbose=2)'''.format(optimizer)
     nbformat.write(nb, 'demofile.ipynb')
     os.system('kaggle kernels push')
     time.sleep(60)
-    os.system('kaggle kernels output demofile')
+    os.system('kaggle kernels output demofile -p ./test/modelfile')
+    os.system('kaggle datasets create -p ./test/modelfile')
     f.close()
     return ('',204)
 
 @app.route('/testinput', methods=['POST'])
 def giveinput():
+    json_string = request.form['state']
+    testinput = json.loads(json_string)
+    
     runfilecontent = '''
 import tensorflow as tf
-trained_model = tf.keras.models.load_model('returnfile.h5')
-
+trained_model = tf.keras.models.load_model('../input/modelfile/returnfile.h5')
+print(trained_model.summary())
     '''
+    f = open('./test/test.py', 'w')
+    f.write(runfilecontent)
+    f.close()
+    os.system('kaggle kernels push -p ./test')
+    return('', 204)
 
 if __name__ == "__main__":
     app.run(debug=True)
