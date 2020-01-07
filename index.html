@@ -52,7 +52,9 @@
 
       }
     };
-
+    var test = {
+        input: ''
+    };
     /*
     layers: {
       count:0,
@@ -253,8 +255,22 @@
         event.preventDefault();
       });
     });
+    $(document).ready(function () {
+      $('#givetest').on("click", function (event) {
+        $.ajax({
+          data: {
+            state: JSON.stringify(test),
+          },
+          type: 'POST',
+          url: '/testinput'
+        });
+        event.preventDefault();
+      });
+    });
+
   </script>
   <button id="process" style="display: block">Process</button>
+  <button id="givetest" style="display: block">Give Test</button>
   <div class="activation" style="display: block; float: right">
     Activation
   </div>

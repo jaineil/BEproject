@@ -59,6 +59,13 @@ model.evaluate(x_test,  y_test, verbose=2)'''.format(optimizer)
     f.close()
     return ('',204)
 
+@app.route('/testinput', methods=['POST'])
+def giveinput():
+    runfilecontent = '''
+import tensorflow as tf
+trained_model = tf.keras.models.load_model('returnfile.h5')
+
+    '''
 
 if __name__ == "__main__":
     app.run(debug=True)
