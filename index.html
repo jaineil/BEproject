@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <meta charset="utf-8">
 <style>
   circle {
@@ -53,7 +53,6 @@
       }
     };
     var test = {
-        input: 0
     };
     /*
     layers: {
@@ -255,8 +254,12 @@
         event.preventDefault();
       });
     });
+
     $(document).ready(function () {
-      $('#givetest').on("click", function (event) {
+        $('#givetest').on("click", function (event) {
+            test['input'] = document.getElementById('testcase').value;
+            test['shape'] = state.layers[1]['inputsize'];
+            
         $.ajax({
           data: {
             state: JSON.stringify(test),
@@ -270,7 +273,9 @@
 
   </script>
   <button id="process" style="display: block">Process</button>
+  <textarea id="testcase"></textarea>
   <button id="givetest" style="display: block">Give Test</button>
   <div class="activation" style="display: block; float: right">
     Activation
   </div>
+    </body>

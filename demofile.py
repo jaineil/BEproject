@@ -1,6 +1,6 @@
 
 import tensorflow as tf
-dataset = tf.keras.datasets.mnist
+dataset = tf.keras.datasets.fashion_mnist
 (x_train, y_train), (x_test, y_test) = dataset.load_data()
 model = tf.keras.models.Sequential([
     tf.keras.layers.Flatten(input_shape=(28,28))

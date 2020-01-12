@@ -5,6 +5,7 @@ import nbformat
 from nbformat.v4 import new_notebook, new_code_cell
 import os
 import time 
+import numpy as np
 
 app = Flask(__name__)
 
@@ -49,27 +50,36 @@ model.compile(optimizer='{}',
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=5)
-model.evaluate(x_test,  y_test, verbose=2)'''.format(optimizer)
+model.evaluate(x_test,  y_test, verbose=2)
+model.save('returnfile.h5')'''.format(optimizer)
     f.write(content)
     nb.cells.append(new_code_cell(content))
     nbformat.write(nb, 'demofile.ipynb')
     os.system('kaggle kernels push')
-    time.sleep(60)
-    os.system('kaggle kernels output demofile -p ./test/modelfile')
-    os.system('kaggle datasets create -p ./test/modelfile')
+    time.sleep(60*2)
+    os.system('kaggle kernels output akashdeepsingh8888/demofile2 -p ./test/modelfile')
     f.close()
     return ('',204)
 
 @app.route('/testinput', methods=['POST'])
-def giveinput():
+def testinput():
     json_string = request.form['state']
     testinput = json.loads(json_string)
-    
+    testinput['input'] = testinput['input'].rstrip()
+    f = open('./test/modelfile/input.csv','w')
+    f.write(testinput['input'])
+    f.close()
+    os.system('kaggle datasets version -p ./test/modelfile -m "update"')
     runfilecontent = '''
 import tensorflow as tf
+import numpy as np
+import pandas as pd
 trained_model = tf.keras.models.load_model('../input/modelfile/returnfile.h5')
+testinput = pd.read_csv('../input/modelfile/input.csv',header=None).to_numpy()
+testinput = testinput.reshape((1,{}))
 print(trained_model.summary())
-    '''
+print(trained_model.predict(testinput))
+    '''.format(testinput['shape'])
     f = open('./test/test.py', 'w')
     f.write(runfilecontent)
     f.close()

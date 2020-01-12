@@ -1,9 +1,9 @@
 {
-  "id": "akashdeepsingh8888/demofile",
-  "title": "demofile",
-  "code_file": "demofile.py",
+  "id": "akashdeepsingh8888/demofile2",
+  "title": "demofile2",
+  "code_file": "demofile.ipynb",
   "language": "python",
-  "kernel_type": "script",
+  "kernel_type": "notebook",
   "is_private": "true",
   "enable_gpu": "false",
   "enable_internet": "true",
