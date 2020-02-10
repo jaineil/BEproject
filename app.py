@@ -84,19 +84,24 @@ testinput = testinput.reshape((1,{}))
 print(trained_model.summary())
 testoutput = trained_model.predict(testinput)
 with open('modelsummary.txt','w') as ms:
-    trained_model.summary(print_fn=lambda x: ms.write(x+'\n'))
+    trained_model.summary(print_fn=lambda x: ms.write(x+{}))
 
 with open('testoutput.txt','w') as testwriterfile:
     testwriterfile.write(str(testoutput))
-    '''.format(testinput['shape'])
+    '''.format(testinput['shape'],'\n')
     f = open('./test/test.py', 'w')
     f.write(runfilecontent)
     f.close()
     os.system('kaggle kernels push -p ./test')
     time.sleep(60)
     os.system('kaggle kernels output akashdeepsingh8888/testfile2 -p ./test')
-    
-    return render_template('resultpage.html',model_summary='',testoutput='')
+    modelsummary=''
+    with open('modelsummary.txt','r') as f:
+        modelsummary = f.read()
+    testoutput = ''
+    with open('testoutput.txt','w') as f:
+        testoutput = f.read()
+    return render_template('resultpage.html',model_summary=modelsummary,testoutput=testoutput)
 
 
 if __name__ == "__main__":
