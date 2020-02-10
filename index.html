@@ -256,10 +256,10 @@
     });
 
     $(document).ready(function () {
-        $('#givetest').on("click", function (event) {
-            test['input'] = document.getElementById('testcase').value;
-            test['shape'] = state.layers[1]['inputsize'];
-            
+      $('#givetest').on("click", function (event) {
+        test['input'] = document.getElementById('testcase').value;
+        test['shape'] = state.layers[1]['inputsize'];
+
         $.ajax({
           data: {
             state: JSON.stringify(test),
@@ -270,12 +270,18 @@
         event.preventDefault();
       });
     });
-
+    
+    function resultpage() {
+      setTimeout(function() {
+        window.open('/resultpage', "_blank");
+      }, 90000);
+    }
   </script>
   <button id="process" style="display: block">Process</button>
   <textarea id="testcase"></textarea>
-  <button id="givetest" style="display: block">Give Test</button>
+  <button id="givetest" style="display: block" onclick="resultpage()">Give Test</button>
+  <textarea id="testoutput"></textarea>
   <div class="activation" style="display: block; float: right">
     Activation
   </div>
-    </body>
+</body>
