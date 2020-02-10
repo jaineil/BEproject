@@ -14,12 +14,14 @@ app = Flask(__name__)
 def index():
     return Response(open('index.html').read(), mimetype='text/html')
 
+
 @app.route('/fileupload', methods=['POST'])
 def fileupload():
     if 'file' in request.files:  
         f = request.files['file']  
         f.save(f.filename)
     return ('',204)
+
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -55,11 +57,12 @@ model.save('returnfile.h5')'''.format(optimizer)
     f.write(content)
     nb.cells.append(new_code_cell(content))
     nbformat.write(nb, 'demofile.ipynb')
+    f.close()
     os.system('kaggle kernels push')
     time.sleep(60*2)
     os.system('kaggle kernels output akashdeepsingh8888/demofile2 -p ./test/modelfile')
-    f.close()
     return ('',204)
+
 
 @app.route('/testinput', methods=['POST'])
 def testinput():
@@ -74,17 +77,27 @@ def testinput():
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+import csv
 trained_model = tf.keras.models.load_model('../input/modelfile/returnfile.h5')
 testinput = pd.read_csv('../input/modelfile/input.csv',header=None).to_numpy()
 testinput = testinput.reshape((1,{}))
 print(trained_model.summary())
-print(trained_model.predict(testinput))
+testoutput = trained_model.predict(testinput)
+with open('modelsummary.txt','w') as ms:
+    trained_model.summary(print_fn=lambda x: ms.write(x+'\n'))
+
+with open('testoutput.txt','w') as testwriterfile:
+    testwriterfile.write(str(testoutput))
     '''.format(testinput['shape'])
     f = open('./test/test.py', 'w')
     f.write(runfilecontent)
     f.close()
     os.system('kaggle kernels push -p ./test')
-    return('', 204)
+    time.sleep(60)
+    os.system('kaggle kernels output akashdeepsingh8888/testfile2 -p ./test')
+    
+    return render_template('resultpage.html',model_summary='',testoutput='')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
