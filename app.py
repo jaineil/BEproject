@@ -7,6 +7,8 @@ import os
 import time
 import numpy as np
 
+modelsummary = ''
+testoutput = ''
 app = Flask(__name__)
 
 
@@ -65,10 +67,6 @@ model.save('returnfile.h5')'''.format(optimizer)
     return ('', 204)
 
 
-modelsummary = ''
-testoutput = ''
-
-
 @app.route('/resultpage', methods=['GET', 'POST'])
 def resultpage():
     return render_template('resultpage.html', model_summary=modelsummary, testoutput=testoutput)
@@ -105,6 +103,8 @@ with open('testoutput.txt','w') as testwriterfile:
     os.system('kaggle kernels push -p ./test')
     time.sleep(60)
     os.system('kaggle kernels output akashdeepsingh8888/testfile2 -p ./test')
+    global modelsummary
+    global testoutput
     with open('./test/modelsummary.txt', 'r') as f:
         modelsummary = f.read()
     with open('./test/testoutput.txt', 'r') as f:

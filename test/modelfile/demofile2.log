@@ -1,10 +1,10 @@
-[{"stream_name":"stderr","time":3.631336476,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
-,{"stream_name":"stderr","time":7.113086999,"data":"[NbConvertApp] Executing notebook with kernel: python\n"}
-,{"stream_name":"stderr","time":20.004996671,"data":"2020-02-10 14:17:01.268841: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
-,{"stream_name":"stderr","time":20.027037692,"data":"2020-02-10 14:17:01.290865: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000160000 Hz\n"}
-,{"stream_name":"stderr","time":20.027823206,"data":"2020-02-10 14:17:01.291762: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55d99867eb60 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
-,{"stream_name":"stderr","time":20.027854626,"data":"2020-02-10 14:17:01.291816: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
-,{"stream_name":"stderr","time":44.105300217,"data":"[NbConvertApp] Writing 2736 bytes to __notebook__.ipynb\n"}
-,{"stream_name":"stderr","time":44.981464779,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
-,{"stream_name":"stderr","time":45.556299309,"data":"[NbConvertApp] Writing 277020 bytes to __results__.html\n"}
+[{"stream_name":"stderr","time":2.215603949,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":5.306793558,"data":"[NbConvertApp] Executing notebook with kernel: python\n"}
+,{"stream_name":"stderr","time":15.669037399,"data":"2020-02-11 14:50:06.511147: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
+,{"stream_name":"stderr","time":15.688373585,"data":"2020-02-11 14:50:06.530523: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000155000 Hz\n"}
+,{"stream_name":"stderr","time":15.689074258,"data":"2020-02-11 14:50:06.531227: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55bf2f0238e0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
+,{"stream_name":"stderr","time":15.689098587,"data":"2020-02-11 14:50:06.531289: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
+,{"stream_name":"stderr","time":42.547773568,"data":"[NbConvertApp] Writing 2736 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":43.53082255,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":44.149840393,"data":"[NbConvertApp] Writing 277020 bytes to __results__.html\n"}
 ]

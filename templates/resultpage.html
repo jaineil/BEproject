@@ -2,9 +2,13 @@
 <html>
     <body>
         Model Summary:
-        {{model_summary}}
+        {% autoescape false %}
+        {{model_summary | replace("\n","<br/>")}}
+        {% endautoescape %}
         <br>
-        The Test Output
-        {{testoutput}}
+        The Test Output:
+        {% autoescape false %}
+        {{testoutput | replace("\n","<br/>")}}
+        {% endautoescape %}
     </body>
 </html>
