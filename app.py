@@ -6,10 +6,16 @@ from nbformat.v4 import new_notebook, new_code_cell
 import os
 import time
 import numpy as np
+#from workzeug.utils import secure_filename
 
 modelsummary = ''
 testoutput = ''
+UPLOAD_FOLDER = '.'
+ALLOWED_EXTENSIONS = {'csv'}
+train_file_type = ''
+train_file_name = ''
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.route('/')
@@ -19,14 +25,20 @@ def index():
 
 @app.route('/fileupload', methods=['POST'])
 def fileupload():
+    global train_file_type
+    global train_file_name
     if 'file' in request.files:
         f = request.files['file']
+        train_file_name = f.filename
         f.save(f.filename)
+        train_file_type = 'uploaded'
     return ('', 204)
 
 
 @app.route('/process', methods=['POST'])
 def process():
+    global train_file_name
+    global train_file_type
     f = open("demofile.py", "w")
     nb = new_notebook()
     json_string = request.form['state']
@@ -37,19 +49,41 @@ def process():
     content = '''
 import tensorflow as tf
 logdir="logboard"
-tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)'''
+
+    if train_file_type=='uploaded':
+        content += '''
+from sklearn.model_selection import train_test_split
+
+'''
+    else:
+         content += '''
 dataset = tf.keras.datasets.{}
-(x_train, y_train), (x_test, y_test) = dataset.load_data()
+(x_train, y_train), (x_test, y_test) = dataset.load_data()'''.format(dataset)
+
+    content+='''
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Flatten(input_shape=({}))'''.format(dataset, datastore["layers"]["1"]["inputsize"])
+    tf.keras.layers.{}(input_shape=({}))'''.format(datastore["layers"]["1"]["type"], datastore["layers"]["1"]["inputsize"])
 
     for i in range(2, datastore["layers"]["count"]+1):
+        
         if datastore["layers"][str(i)]["type"] in activations:
             content = content + '''
-        ,tf.keras.layers.Dropout({})'''.format(datastore["layers"][str(i)]["outputsize"])
+        ,tf.keras.layers.{}({})'''.format(datastore['layers'][str(i)]['type'], 
+        datastore["layers"][str(i)]["outputsize"])
+
+        elif datastore["layers"][str(i)]["type"] == 'Conv2D':
+            content = content + '''
+        ,tf.keras.layers.{}({}, {}, activation=tf.nn.{})'''.format(datastore["layers"][str(i)]['type'], 
+        int(datastore["layers"][str(i)]['outputsize']), 
+        datastore["layers"][str(i)]['inputsize'],
+        datastore["layers"][str(i)]["act"])
+        
         else:
             content = content + '''
-        ,tf.keras.layers.Dense({}, activation=tf.nn.{})'''.format(int(datastore["layers"][str(i)]['outputsize']), datastore["layers"][str(i)]["act"])
+        ,tf.keras.layers.{}({}, activation=tf.nn.{})'''.format(datastore["layers"][str(i)]['type'], 
+        int(datastore["layers"][str(i)]['outputsize']), 
+        datastore["layers"][str(i)]["act"])
 
     content = content + '''])
 model.compile(optimizer='{}',

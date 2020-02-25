@@ -1,22 +1,22 @@
-[{"stream_name":"stderr","time":9.661542591,"data":"2020-02-18 15:53:09.398969: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
-,{"stream_name":"stderr","time":9.680191058,"data":"2020-02-18 15:53:09.417735: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000165000 Hz\n"}
-,{"stream_name":"stderr","time":9.680806194,"data":"2020-02-18 15:53:09.418427: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x559702ad5730 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
-,{"stream_name":"stderr","time":9.680893813,"data":"2020-02-18 15:53:09.418475: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
-,{"stream_name":"stdout","time":10.175013456,"data":"Model: \"sequential\"\n"}
-,{"stream_name":"stdout","time":10.175051215,"data":"_________________________________________________________________\n"}
-,{"stream_name":"stdout","time":10.175056119,"data":"Layer (type)                 Output Shape              Param #   \n"}
-,{"stream_name":"stdout","time":10.175059663,"data":"=================================================================\n"}
-,{"stream_name":"stdout","time":10.175063093,"data":"flatten (Flatten)            (None, 784)               0         \n"}
-,{"stream_name":"stdout","time":10.175067767,"data":"_________________________________________________________________\n"}
-,{"stream_name":"stdout","time":10.175212507,"data":"dense (Dense)                (None, 128)               100480    \n"}
-,{"stream_name":"stdout","time":10.175221461,"data":"_________________________________________________________________\n"}
-,{"stream_name":"stdout","time":10.175474404,"data":"dense_1 (Dense)              (None, 10)                1290      \n"}
-,{"stream_name":"stdout","time":10.175499738,"data":"=================================================================\n"}
-,{"stream_name":"stdout","time":10.175735275,"data":"Total params: 101,770\n"}
-,{"stream_name":"stdout","time":10.175744591,"data":"Trainable params: 101,770\n"}
-,{"stream_name":"stdout","time":10.175791699,"data":"Non-trainable params: 0\n"}
-,{"stream_name":"stdout","time":10.175796451,"data":"_________________________________________________________________\n"}
-,{"stream_name":"stdout","time":10.175801433,"data":"None\n"}
-,{"stream_name":"stderr","time":12.109854388,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
-,{"stream_name":"stderr","time":13.056803676,"data":"[NbConvertApp] Writing 275014 bytes to __results__.html\n"}
+[{"stream_name":"stderr","time":10.086498775,"data":"2020-02-25 13:56:02.427505: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
+,{"stream_name":"stderr","time":10.111787126,"data":"2020-02-25 13:56:02.452930: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000140000 Hz\n"}
+,{"stream_name":"stderr","time":10.112734233,"data":"2020-02-25 13:56:02.453828: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x555e52ef6bd0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
+,{"stream_name":"stderr","time":10.112779396,"data":"2020-02-25 13:56:02.453886: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
+,{"stream_name":"stdout","time":10.639168755,"data":"Model: \"sequential\"\n"}
+,{"stream_name":"stdout","time":10.639243601,"data":"_________________________________________________________________\n"}
+,{"stream_name":"stdout","time":10.639269941,"data":"Layer (type)                 Output Shape              Param #   \n"}
+,{"stream_name":"stdout","time":10.639275672,"data":"=================================================================\n"}
+,{"stream_name":"stdout","time":10.639280738,"data":"flatten (Flatten)            (None, 784)               0         \n"}
+,{"stream_name":"stdout","time":10.639285561,"data":"_________________________________________________________________\n"}
+,{"stream_name":"stdout","time":10.639548418,"data":"dense (Dense)                (None, 128)               100480    \n"}
+,{"stream_name":"stdout","time":10.63957062,"data":"_________________________________________________________________\n"}
+,{"stream_name":"stdout","time":10.63957734,"data":"dense_1 (Dense)              (None, 10)                1290      \n"}
+,{"stream_name":"stdout","time":10.639582542,"data":"=================================================================\n"}
+,{"stream_name":"stdout","time":10.639881225,"data":"Total params: 101,770\n"}
+,{"stream_name":"stdout","time":10.639895813,"data":"Trainable params: 101,770\n"}
+,{"stream_name":"stdout","time":10.639900701,"data":"Non-trainable params: 0\n"}
+,{"stream_name":"stdout","time":10.639906255,"data":"_________________________________________________________________\n"}
+,{"stream_name":"stdout","time":10.639911241,"data":"None\n"}
+,{"stream_name":"stderr","time":12.797364515,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":13.845837141,"data":"[NbConvertApp] Writing 275014 bytes to __results__.html\n"}
 ]
