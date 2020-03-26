@@ -1,11 +1,11 @@
-[{"stream_name":"stderr","time":2.158668463,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
-,{"stream_name":"stderr","time":5.126680326,"data":"[NbConvertApp] Executing notebook with kernel: python\n"}
-,{"stream_name":"stderr","time":15.848302435,"data":"2020-02-25 13:46:19.594871: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
-,{"stream_name":"stderr","time":15.870291702,"data":"2020-02-25 13:46:19.616963: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000170000 Hz\n"}
-,{"stream_name":"stderr","time":15.87096441,"data":"2020-02-25 13:46:19.617729: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x560534902000 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
-,{"stream_name":"stderr","time":15.871135086,"data":"2020-02-25 13:46:19.617931: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
-,{"stream_name":"stderr","time":16.628014678,"data":"2020-02-25 13:46:20.374625: I tensorflow/core/profiler/lib/profiler_session.cc:225] Profiler session started.\n"}
-,{"stream_name":"stderr","time":46.200252104,"data":"[NbConvertApp] Writing 2879 bytes to __notebook__.ipynb\n"}
-,{"stream_name":"stderr","time":47.14605855,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
-,{"stream_name":"stderr","time":47.748025641,"data":"[NbConvertApp] Writing 277660 bytes to __results__.html\n"}
+[{"stream_name":"stderr","time":3.432286294,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":6.613432079,"data":"[NbConvertApp] Executing notebook with kernel: python\n"}
+,{"stream_name":"stderr","time":15.524625,"data":"2020-02-25 14:57:32.231983: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F\n"}
+,{"stream_name":"stderr","time":15.543349705,"data":"2020-02-25 14:57:32.250814: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000120000 Hz\n"}
+,{"stream_name":"stderr","time":15.544134562,"data":"2020-02-25 14:57:32.251630: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x562d27435360 initialized for platform Host (this does not guarantee that XLA will be used). Devices:\n"}
+,{"stream_name":"stderr","time":15.544162339,"data":"2020-02-25 14:57:32.251686: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version\n"}
+,{"stream_name":"stderr","time":16.405351578,"data":"2020-02-25 14:57:33.112747: I tensorflow/core/profiler/lib/profiler_session.cc:225] Profiler session started.\n"}
+,{"stream_name":"stderr","time":70.406867762,"data":"[NbConvertApp] Writing 2409 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":71.340921124,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":71.951049579,"data":"[NbConvertApp] Writing 278114 bytes to __results__.html\n"}
 ]

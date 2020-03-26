@@ -2,10 +2,12 @@
 import tensorflow as tf
 logdir="logboard"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
-dataset = tf.keras.datasets.fashion_mnist
+dataset = tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = dataset.load_data()
 model = tf.keras.models.Sequential([
     tf.keras.layers.Flatten(input_shape=(28,28))
+        ,tf.keras.layers.Dense(512, activation=tf.nn.relu)
+        ,tf.keras.layers.Dense(256, activation=tf.nn.relu)
         ,tf.keras.layers.Dense(128, activation=tf.nn.relu)
         ,tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
 model.compile(optimizer='adam',
